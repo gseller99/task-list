@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>To Do List</title>
+</head>
+
+<body>
+    <header>TO DO LIST</header>
+    <div>
+        <p>Who</p>
+        <input type="text" id="txtFirstName" autofocus placeholder="first name">
+    </div>
+    <div>
+        <p>What</p>
+        <input type="text" id="txtTaskDesc" placeholder="task description">
+    </div>
+    <div>
+        <p>Due</p>
+        <input type="text" id="txtDateDue" placeholder="mm/dd/yyyy">
+    </div>
+    <br>
+    <button id="btnSubmit">Submit Foo</button>
+    <p class="to-do-title">List of To Dos</p>
+    <div id="myList"></div>
+    <script>
+    
+    var submitButton = document.querySelector("#btnSubmit");
+
+    var doThisWhenClick = function() {
+
+        var firstName = document.querySelector("#txtFirstName");
+        var taskDesc = document.querySelector("#txtTaskDesc");
+        var dateDue = document.querySelector("#txtDateDue");
+
+        console.log("first name: " + firstName.value);
+        console.log("task description: " + taskDesc.value);
+        console.log("due date: " + dateDue.value);
+
+        localStorage.ToDos = firstName.value + " " + taskDesc.value + " "  + dateDue.value;
+
+        var tasks = document.querySelector("#myList");
+        tasks.innerHTML = localStorage.ToDos;
+    }
+    submitButton.addEventListener("click", doThisWhenClick);
+    </script>
+</body>
+
+</html>

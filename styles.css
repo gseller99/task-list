@@ -1,0 +1,14 @@
+body {
+	background: gray;
+}
+
+header {
+	color:red;
+	font-weight: bolder;
+	text-align: center;
+	height: 120%;
+	font-family: sans-serif;
+}
+.to-do-title {
+	color:blue;
+}
