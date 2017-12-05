@@ -26,25 +26,48 @@
     <p class="to-do-title">List of To Dos</p>
     <div id="myList"></div>
     <script>
-    
-    var submitButton = document.querySelector("#btnSubmit");
-
-    var doThisWhenClick = function() {
-
         var firstName = document.querySelector("#txtFirstName");
-        var taskDesc = document.querySelector("#txtTaskDesc");
+        var task = document.querySelector("#txtTaskDesc");
         var dateDue = document.querySelector("#txtDateDue");
 
         console.log("first name: " + firstName.value);
-        console.log("task description: " + taskDesc.value);
+        console.log("task description: " + task.value);
         console.log("due date: " + dateDue.value);
+    
+        var submitButton = document.querySelector("#btnSubmit");
 
-        localStorage.ToDos = firstName.value + " " + taskDesc.value + " "  + dateDue.value;
+    // submitButton.addEventListener("click", doThisWhenClick);
+   submitButton.addEventListener("click", function() {
+    if (localStorage.taskCount)
+            localStorage.taskCount = Number(localStorage.taskCount) + 1;
+        else localStorage.taskCount = "1";
+        
+        localStorage["name" + localStorage.taskCount] = firstName.value;
+        localStorage["task" + localStorage.taskCount] = task.value;
+        localStorage["due" + localStorage.taskCount] = dateDue.value;
+        displayTasksFromLocalStorage();
+    });
 
-        var tasks = document.querySelector("#myList");
-        tasks.innerHTML = localStorage.ToDos;
+    function displayTasksFromLocalStorage() {
+        var tasksToDisplay = "";
+        for (var i = 1; i <= localStorage.taskCount; i++) {
+            tasksToDisplay = localStorage["name" + i] + " " +localStorage["task" + i] + " " + localStorage["due" + i] + "<br />" + tasksToDisplay;
+        }
+
+        // localStorage.myList = firstName.value + " " + task.value + " " + dateDue.value;
+        document.querySelector("#myList").innerHTML = tasksToDisplay;
     }
-    submitButton.addEventListener("click", doThisWhenClick);
+   
+
+    // var doThisWhenClick = function() {
+
+    //    localStorage.ToDos = firstName.value + " " + task.value + " "  + dateDue.value;
+
+    //     var tasks = document.querySelector("#myList");
+    //     tasks.innerHTML = localStorage.ToDos;
+    // }
+    
+displayTasksFromLocalStorage();
     
 
 
